@@ -262,9 +262,8 @@ See the [LICENSE](LICENSE) file for more details.
 ```
 
 ## 🙌 Acknowledgements
-Credit people, organizations, datasets, funding sources, and tools that contributed to this research.
-
-> _Example:_  
+- This README structure was inspired by the Research README template from
+[MohamedElsayed-22/README-templates](https://github.com/MohamedElsayed-22/README-templates).
 > - We thank **Prof. {Name}** for valuable discussions and guidance.  
 > - This work was supported by **{Funding Agency / Grant Number}**.  
 > - We acknowledge the use of the **{Dataset Name}** dataset for experiments.  
