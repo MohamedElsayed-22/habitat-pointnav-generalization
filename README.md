@@ -1,59 +1,50 @@
-# embodied_navigation
-This project is for exploring generalization techniques in habitat.
 
-<details>
-<summary>⚠️ IMPORTANT NOTE (click to expand)</summary>
-This template is recommended to be split into a general `README.md` for core sections, and other files such as a `docs/` folder or `SETUP.md`.
-</details>
-
-
-# 📘 **{PROJECT TITLE}**
+# 📘 **Analyzing Generalization in Habitat PointGoal Navigation**
 
 ## 🧭 Overview
-Briefly introduce the research topic, the addressed problem, and the main contributions.
+This repository contains a replication and analysis of the **Depth-based PPO PointGoal Navigation (PointNav)** agent from the Habitat framework.  
+The goal is to study **generalization to unseen environments** under the original Habitat evaluation protocol, with a focus on controlled experiments under limited compute.
 
-> _Example:_  
-> This repository contains the official implementation of the model introduced in the paper:  
-> **{PAPER TITLE}** ({YEAR})
 
 
 ## 📄 Abstract
-Provide a short, high-level summary of the research, methodology, and key findings.
+This repository presents a faithful replication of the Depth-based PPO agent for PointGoal Navigation introduced in the Habitat framework.  
+Core trends reported in prior work are reproduced in this repo, including the generalization gap between seen and unseen environments, using **Gibson** and **Matterport3D** datasets.
 
->_Example:_  
->This work introduces a hybrid CNN-RNN model for Arabic handwritten text recognition.  
->The proposed architecture combines EfficientNetB3 for feature extraction with Bidirectional LSTMs and Multi-Head Self-Attention for sequence modeling.  
->Experiments on the KHATT dataset demonstrate state-of-the-art accuracy.
+- All experiments are conducted under constrained compute to emphasize controlled analysis rather than large-scale training.  
+- This repository also serves as a foundation for lightweight generalization-oriented extensions explored in subsequent work.
+
 
 ## 🎯 Research Objectives
-List the main goals or research questions addressed in this work.
+- Replicate the Depth-based PPO PointNav baseline under the original Habitat evaluation protocol.
+- Verify generalization behavior when evaluated on unseen environments.
+- Quantify the performance gap between in-domain and cross-dataset evaluation.
+- Establish a clean experimental baseline for future generalization-oriented extensions.
 
-- Objective 1: Develop a robust model for handwritten text recognition.  
-- Objective 2: Improve sequence modeling using attention mechanisms.  
-- Objective 3: Evaluate performance on benchmark datasets and compare with prior work.
+## 🧠 Baseline Method (Habitat PPO-Depth)
+The baseline agent follows the standard Habitat PPO PointNav setup with **Depth-only observations**.
 
-## 🧠 Proposed Method / Architecture
-Describe the method, model, or system used in the research. Include a diagram if available.
+Key components:
+- Proximal Policy Optimization (PPO)
+- Depth visual input
+- Continuous navigation actions
+- SPL-based evaluation on unseen environments
 
-- **Component 1:** Convolutional feature extractor (e.g., EfficientNetB3)  
-- **Component 2:** Sequence modeling using Bidirectional LSTM layers  
-- **Component 3:** Multi-Head Attention for enhanced context understanding  
-- **Component 4:** CTC layer for alignment-free transcription
+All architectural and training details follow the official Habitat baselines implementation.
 
-📌 *Insert model diagram below:*  
-`![Figure X: Model Architecture](path/to/model_architecture.png)`  
-**Figure X:** Caption describing the architecture
 
 ## 📂 Dataset / Data Collection
-Describe the dataset(s) used or created, including sources, format, and structure.
+The experiments use standard Habitat navigation datasets:
 
-- **Source:** {Dataset source or reference}  
-- **Format:** {Image, text, CSV, etc.}  
-- **Preprocessing requirements:** {Any preprocessing steps needed}  
+- **Gibson**: Used for training
+- **Matterport3D (MP3D)**: Used for cross-dataset evaluation
 
-📁 **Example directory structure:**
+Both datasets are used with the official Habitat splits to ensure comparability with prior work.
+ 
 
->_Example:_
+<!-- 📁 **Example directory structure:** -->
+
+<!-- >_Example:_
 ```Datasets/
 └── {dataset_name}/
 ├── train/
@@ -72,9 +63,9 @@ Describe the dataset(s) used or created, including sources, format, and structur
 >- Labels must be `{format}` and match filenames of corresponding images
 
 ## 🧼 Preprocessing & Augmentation
-Explain all preprocessing steps and optional data augmentation applied to the dataset.
+Explain all preprocessing steps and optional data augmentation applied to the dataset. -->
 
-### Preprocessing Steps
+<!-- ### Preprocessing Steps
 >_Example:_
 >- Resize images to a fixed resolution without distortion  
 >- Apply centered padding  
@@ -87,36 +78,46 @@ Explain all preprocessing steps and optional data augmentation applied to the da
 
 ### Label Encoding
 - Encode labels using `{encoding_method}`  
-- Use `{padding_token}` for fixed-length padding if required
+- Use `{padding_token}` for fixed-length padding if required -->
 
 ## 🌳 Project Structure
-Provide a clear organization of the repository files and folders.  
-**Note for this part you can use scripts to generate the repo structure directly**
+```text
+pointnav-generalization/
+├── habitat-lab/          # Habitat submodule 
+├── configs/              # Experiment configs
+├── results/              # Logs, checkpoints, plots
+├── notes/                # Replication log and observations
+├── docs/                 # guide to implementations
+├── LICENSE               
+└── README.md
+```
+
 
 ## 🏋️ Training Instructions
-Provide step-by-step instructions to train the model or replicate experiments.
+
 
 ### Setup
 1. Install dependencies:
-```bash
-pip install -r requirements.txt
-```
+    
+    Please follow the environment setup instructions in `docs/`.
 
-2. Prepare the dataset in the folder structure described above.
-```bash
+***to be further elaborated***
+
+<!-- 2. Training: -->
+<!-- ```bash
 python train.py --arg1 value1 --arg2 value2
-```
+``` -->
 
-### Key Training Details
+<!-- ### Key Training Details
 
 - Batch size: `{batch_size}`
 - Learning rate: `{learning_rate}`
 - Number of epochs: `{num_epochs}`
 - Checkpointing: Save best model as `{checkpoint_name}`
 - Early stopping criteria: `{criteria}`
-- Optional callbacks: `{callback_names}`
+- Optional callbacks: `{callback_names}` -->
 
-## 🧪 Evaluation
+<!-- ## 🧪 Evaluation
 Describe how to evaluate the trained model and what metrics are reported.
 
 ### Evaluation Command
@@ -129,17 +130,17 @@ python evaluate.py --model {checkpoint_path} --data {dataset_path}
 >- Character-level accuracy
 >- Global accuracy / overall score
 >- Precision, Recall, F1-score (if applicable)
->- Loss curves
+>- Loss curves -->
 
-### Inspecting Outputs
+<!-- ### Inspecting Outputs
 >_Example_
 >- Decoded outputs for selected samples are saved to `{output_folder}`.   
->-Visualizations can be generated for qualitative analysis.
+>-Visualizations can be generated for qualitative analysis. -->
 
-## 📊 Results & Discussion
-Summarize the findings of your experiments, including quantitative and qualitative results.
+<!-- ## 📊 Results & Discussion
+Summarize the findings of your experiments, including quantitative and qualitative results. -->
 
-### Quantitative Results
+<!-- ### Quantitative Results
 > _Example_
 >| Experiment | Metric 1 | Metric 2 | Notes |
 >|------------|----------|----------|-------|
@@ -154,9 +155,9 @@ Summarize the findings of your experiments, including quantitative and qualitati
 ### Discussion
 - Interpret results and explain trends  
 - Compare with prior work if relevant  
-- Mention limitations observed in the results
+- Mention limitations observed in the results -->
 
-## ⚙️ Environment & Dependencies
+<!-- ## ⚙️ Environment & Dependencies
 List all dependencies, hardware/software requirements, and setup instructions to reproduce the experiments.
 
 ### Hardware Requirements
@@ -192,80 +193,15 @@ conda activate env
 >_Example:_
 >- Jupyter Notebook / Jupyter Lab for interactive exploration
 >- Visual Studio Code or PyCharm for development
->- Git LFS for large datasets
-
-## 🧩 Limitations
-Describe the known limitations or constraints of the research.  
-This helps users understand the boundaries of the method or dataset.
-
-> _Example:_  
-> - The model requires large amounts of labeled data to achieve high accuracy.  
-> - Performance decreases on noisy or low-resolution inputs.  
-> - The current implementation only supports {language/type of data}.  
-> - Training time is long on standard GPUs without optimization.
-
-## 🛠 Future Work
-List potential extensions, improvements, or research directions.  
-
-> _Example:_  
-> - Incorporate semi-supervised learning to reduce labeled data requirements.  
-> - Optimize the model for faster inference on edge devices.  
-> - Extend the dataset to include more diverse samples.  
-> - Explore additional attention mechanisms or transformer-based architectures.  
-> - Develop a web or mobile demo for real-time usage.
+>- Git LFS for large datasets -->
 
 
-## 🤝 Contributing
-We welcome contributions to improve this repository. Please follow these guidelines:
 
-1. **Fork the repository** and create your branch:
-    ```bash
-   git checkout -b feature/your-feature-name
-    ```
-
-2. **Make your changes** following the existing code style and structure.
-3. **Test your changes** to ensure they work correctly.
-4. **Submit a Pull Request** describing:
-    - What you changed or added
-    - Why it improves the repository
-    - Any issues it fixes (if applicable)
-
-    **Notes:**  
-    - Ensure all new templates follow consistent Markdown formatting.
-    - Include examples or placeholders where relevant
-    - Large contributions should be discussed via an issue before implementation.
-
-
-## 📝 Citation
-If you use this repository in your research, please cite it as follows:
-
-```bibtex
-@inproceedings{YourCitationKey,
-  title={Your Paper / Project Title},
-  author={Author Name1 and Author Name2 and ...},
-  booktitle={Conference / Workshop / Journal Name},
-  year={YYYY},
-  doi={DOI or URL if available}
-}
-```
-
-```markdown
 ## 📄 License
-This repository is licensed under the {LICENSE_NAME} License.  
+This repository is licensed under the MIT License. See the [MIT License](LICENSE) file for more details.
 
-See the [LICENSE](LICENSE) file for more details.
-
-### Examples of commonly used licenses:
-- **MIT** — Permissive license, allows modification and redistribution.  
-- **Apache 2.0** — Permissive with explicit patent grant.  
-- **CC BY** — Creative Commons Attribution, recommended for datasets or templates.  
-```
 
 ## 🙌 Acknowledgements
 - This README structure was inspired by the Research README template from
 [MohamedElsayed-22/README-templates](https://github.com/MohamedElsayed-22/README-templates).
-> - We thank **Prof. {Name}** for valuable discussions and guidance.  
-> - This work was supported by **{Funding Agency / Grant Number}**.  
-> - We acknowledge the use of the **{Dataset Name}** dataset for experiments.  
-> - We appreciate the developers of **{Library / Framework}** for their open-source contributions.  
-> - Special thanks to **{Collaborators / Lab Members}** for assistance with experiments or data collection.
+ - The developers of [facebookresearch/habitat-lab](https://github.com/facebookresearch/habitat-lab) are appreciated for their open-source contributions.  
