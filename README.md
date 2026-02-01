@@ -159,7 +159,8 @@ python evaluate.py --model {checkpoint_path} --data {dataset_path}
 <!-- ## 📊 Results & Discussion -->
 ## 📊 Results
 
-Figure 1 illustrates the SPL during training for the baseline PointGoal navigation replication experiment.
+### Baseline Replication
+**Figure 1** illustrates the SPL during training for the baseline PointGoal navigation replication experiment.
 
 <p align="left">
   <img src="docs/Baseline_Replication_spl_curve.png" width="500">
@@ -171,6 +172,23 @@ Figure 1 illustrates the SPL during training for the baseline PointGoal navigati
 |----------------------|--------|---------|
 | Habitat (reported)   | 0.79   | 0.89    |
 | Replication (ours)   | 0.7275 | 0.84    |
+
+# Multi-Dataset Training
+**Figure 2** illustrates the SPL during training for the baseline PointGoal navigation replication experiment.
+
+<p align="left">
+  <img src="docs/Multi_Dataset_Training_spl_curve.png" width="500">
+</p>
+
+**Table 2** reports the evaluation performance of the depth-based PPO PointGoal navigation agent on unseen environments.
+
+| Model                  | Dataset      | SPL        | Success |
+|------------------------|--------------|------------|---------|
+| Baseline (replication) | Gibson       | 0.7275     | 0.84    |
+| Baseline (replication) | Matterport3D | 0.5740     | 0.6949  |
+| Modified model (ours)  | Gibson       | **0.7489** | **0.86**|
+| Modified model (ours)  | Matterport3D | **0.6940** | **0.8249**|
+
 
 
 <!-- ### Qualitative Results
