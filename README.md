@@ -83,13 +83,26 @@ Explain all preprocessing steps and optional data augmentation applied to the da
 ## 🌳 Project Structure
 ```text
 pointnav-generalization/
-├── habitat-lab/          # Habitat submodule 
-├── configs/              # Experiment configs
-├── results/              # Logs, checkpoints, plots
-├── notes/                # Replication log and observations
-├── docs/                 # guide to implementations
-├── LICENSE               
-└── README.md
+├── config/                               # Experiment configuration files
+│   ├── gibson_mp3d.yaml
+│   ├── habitat.yaml
+│   ├── pointnav_gibson_mp3d.yaml
+│   ├── ppo_pointnav.yaml
+│   └── ppo_pointnav_gibson_mp3d.yaml
+│
+├── docs/                                 # Documentation and guides
+│   ├── Baseline_Replication_spl_curve.png
+│   ├── pointnav_replication_and_generalization.md
+│   └── setup_gpu.md
+│
+├── habitat-lab/                          # Habitat submodule (unchanged)
+├── outputs/                              # Training outputs (logs, checkpoints, TB files)
+│
+├── .gitmodules
+├── LICENSE
+├── README.md
+└── tb_display.py                         # Utility script for TensorBoard CSV/plots
+
 ```
 
 
@@ -101,7 +114,13 @@ pointnav-generalization/
     
     Please follow the environment setup instructions in `docs/`.
 
-***to be further elaborated***
+## ♻️ Reproducibility and Multi-Dataset Training
+
+Detailed instructions for reproducing the replication and multi-dataset training experiments
+are provided in  
+[`reproducibility_pointnav_replication_and_multidataset.md`](docs/pointnav_replication_and_generalization.md).
+
+
 
 <!-- 2. Training: -->
 <!-- ```bash
@@ -137,17 +156,24 @@ python evaluate.py --model {checkpoint_path} --data {dataset_path}
 >- Decoded outputs for selected samples are saved to `{output_folder}`.   
 >-Visualizations can be generated for qualitative analysis. -->
 
-<!-- ## 📊 Results & Discussion
-Summarize the findings of your experiments, including quantitative and qualitative results. -->
+<!-- ## 📊 Results & Discussion -->
+## 📊 Results
 
-<!-- ### Quantitative Results
-> _Example_
->| Experiment | Metric 1 | Metric 2 | Notes |
->|------------|----------|----------|-------|
->| Baseline   | 0.85     | 0.78     | -     |
->| Proposed   | 0.92     | 0.88     | Improved with attention mechanism |
+Figure 1 illustrates the SPL during training for the baseline PointGoal navigation replication experiment.
 
-### Qualitative Results
+<p align="left">
+  <img src="docs/Baseline_Replication_spl_curve.png" width="500">
+</p>
+
+**Table 1** reports the evaluation performance of the depth-based PPO PointGoal navigation agent on unseen environments.
+
+| Model                | SPL    | Success |
+|----------------------|--------|---------|
+| Habitat (reported)   | 0.79   | 0.89    |
+| Replication (ours)   | 0.7275 | 0.84    |
+
+
+<!-- ### Qualitative Results
 - Show example outputs for key samples  
 - Compare predictions with ground truth  
 - Highlight common errors or patterns
@@ -157,43 +183,8 @@ Summarize the findings of your experiments, including quantitative and qualitati
 - Compare with prior work if relevant  
 - Mention limitations observed in the results -->
 
-<!-- ## ⚙️ Environment & Dependencies
-List all dependencies, hardware/software requirements, and setup instructions to reproduce the experiments.
-
-### Hardware Requirements
-> _Example:_  
-> - GPU: NVIDIA RTX 3090 or equivalent  
-> - RAM: 32 GB minimum  
-> - Storage: 100 GB free disk space
-
-### Software Requirements
-> _Example:_  
-> - Python 3.10  
-> - CUDA 11.8 (if using GPU)  
-> - Operating System: Ubuntu 22.04 / Windows 11
-
-### Python Dependencies
-
->_Example:_  
-Install all required packages using pip:
-
-```bash
-pip install -r requirements.txt
-```
-
->_Example:_  
-create Python environment using conda:
-
-```bash
-conda env create -f env.yml
-conda activate env
-```
-
-### Optional Tools
->_Example:_
->- Jupyter Notebook / Jupyter Lab for interactive exploration
->- Visual Studio Code or PyCharm for development
->- Git LFS for large datasets -->
+## ⚙️ Environment & Dependencies
+Follow instruction in [`setup_gpu.md`](docs/setup_gpu.md) to setup the experiment environment.
 
 
 

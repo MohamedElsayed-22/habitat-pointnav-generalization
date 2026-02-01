@@ -1,0 +1,17 @@
+# @package _global_
+
+defaults:
+  - pointnav_base
+  - /habitat/dataset/pointnav: gibson_mp3d
+  - _self_
+
+habitat:
+  environment:
+    max_episode_steps: 500
+
+  simulator:
+    agents:
+      main_agent:
+          depth_sensor:
+            width: 256
+            height: 256
